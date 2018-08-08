@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proyectoxml;
-
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
@@ -13,15 +7,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javax.swing.JOptionPane;
 import modelo.Empleado;
-
-/**
- *
- * @author giovanni.lebro
- */
 public class FXMLDocumentController implements Initializable {
-    
     @FXML
     private Label ltitulo;
     @FXML
@@ -44,9 +31,7 @@ public class FXMLDocumentController implements Initializable {
     private TextField txtcode;
     @FXML
     private TextField txtdepart;
-  
     LinkedList<Empleado>listEmpleado;
- 
     @FXML
     private void AgregarEmpleadoLista(ActionEvent event) {
        String nombre=txtnombre.getText();
@@ -57,20 +42,21 @@ public class FXMLDocumentController implements Initializable {
        Empleado objEmpleado=new Empleado(codigo, departamento, nombre, direccion, edad);
         listEmpleado.add(objEmpleado);
         limpiarCampos();
-    
     }
-    
+    @FXML
+    private void CrearArchivoXml(ActionEvent event) {
+        Empleado objE=new Empleado();
+        boolean guardar=objE.crearFileXml(listEmpleado);
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
       listEmpleado=new LinkedList<>();
     }    
-
     private void limpiarCampos() {
         txtnombre.setText("");
         txtdireccion.setText("");
         txtedad.setText("");
         txtcode.setText("");
         txtdepart.setText("");
-    }
-    
+    }  
 }
